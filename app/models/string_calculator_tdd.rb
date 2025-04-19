@@ -8,6 +8,9 @@ class StringCalculatorTdd
       numbers = numbers[4..-1]
     end
 
+    negatives = numbers.split(/#{delimiter}|\s/).map(&:to_i).select { |num| num.negative? }
+    raise "negative numbers not allowed #{negatives.join(',')}" if negatives.any?
+
     numbers.split(/#{delimiter}|\s/).map(&:to_i).sum
   end
 end
